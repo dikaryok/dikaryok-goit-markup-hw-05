@@ -14,11 +14,18 @@
   --color-line-box: #eeeeee;
   --icon-color: #afb1b8;
   --background-icon-color-dark: #ffffff1a;
+  --accent-second-color: #2196f3e6;
+  --modal-background-color: #00000033;
+  --modal-border-btn-color: #0000001a;
+  --black: #000000;
+  --background-dark-transparant: #2f303acc;
 
   --space-between-clients: 30px;
   --amount-of-clients: 6;
   --space-between-exemples: 30px;
   --ammount-of-exemples-on-line: 3;
+
+  --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 /*#endregion --- root ----*/
 
@@ -66,10 +73,12 @@ body {
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
+
 /*#endregion --- /Global settings ----*/
 
 /*#region --- HEADER ----*/
 .logo {
+  padding: 24px 0px;
   font-family: var(--secondary-font);
   font-weight: 700;
   font-size: 26px;
@@ -105,7 +114,7 @@ header .logo {
 }
 
 .menu-link {
-  display: block;
+  /* display: block; */
   padding-top: 32px;
   padding-bottom: 32px;
 
@@ -115,6 +124,27 @@ header .logo {
   font-size: 14px;
   line-height: 1.14;
   letter-spacing: 0.02em;
+
+  transition: color 250ms var(--timing-function);
+}
+
+.menu-link.current {
+  color: var(--accent-color);
+  position: relative;
+}
+
+.menu-link.current::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: inline-block;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  /* bottom: 1px; */
+
+  background-color: var(--accent-color);
 }
 
 .list.contacts {
@@ -137,6 +167,8 @@ li.contacts-list + .contacts-list {
   height: inherit;
 
   color: var(--secondary-text-color-theme-light);
+
+  transition: color 250ms var(--timing-function);
 }
 .header-nav .contacts-list-link {
   display: flex;
@@ -150,10 +182,6 @@ li.contacts-list + .contacts-list {
 .menu-link:focus,
 .contacts-list-link:hover,
 .contacts-list-link:focus {
-  color: var(--accent-color);
-}
-
-.menu-link.current {
   color: var(--accent-color);
 }
 
@@ -206,6 +234,7 @@ li.contacts-list + .contacts-list {
 
 .modal-btn {
   width: 200px;
+
   height: 50px;
   border-radius: 4px;
   padding: 10px 25px;
@@ -219,13 +248,85 @@ li.contacts-list + .contacts-list {
   color: var(--main-text-color-theme-dark);
   background: var(--accent-color);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: background-color 250ms var(--timing-function);
+
+  /* align-items: center; */
 }
 
 .modal-btn:hover,
 .modal-btn:focus {
   background-color: var(--btn-background-color);
 }
+
 /*#endregion --- /HERO ----*/
+
+/*#region --- MODAL WINDOW  ----*/
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  background-color: var(--modal-background-color);
+  transition: opacity 250ms var(--timing-function);
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  min-width: 528px;
+  min-height: 581px;
+  border-radius: 4px;
+  opacity: 1;
+
+  background-color: var(--main-text-color-theme-dark);
+
+  transition: opacity 250ms var(--timing-function);
+}
+.modal-btn-closed {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  padding: 0;
+
+  background-color: inherit;
+  border: 1px solid var(--modal-border-btn-color);
+  color: var(--black);
+  cursor: pointer;
+
+  transition: color 250ms var(--timing-function);
+}
+
+.btn-closed-icon {
+  fill: currentColor;
+}
+
+.modal-btn-closed:hover,
+.modal-btn-closed:focus {
+  color: var(--accent-color);
+}
+/*#endregion --- /MODAL WINDOW  ----*/
 
 /*#region --- BENEFITS  ----*/
 .benefits-list {
@@ -291,6 +392,7 @@ li.contacts-list + .contacts-list {
 }
 
 .about-gallery-item {
+  position: relative;
   width: calc((100% - 60px) / 3);
 }
 
@@ -300,6 +402,27 @@ li.contacts-list + .contacts-list {
 
 .about-gallery-img {
   display: block;
+}
+
+.about-gallery-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  display: block;
+  padding: 27px 40px;
+  margin: 0;
+  background-color: var(--background-dark-transparant);
+
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.14;
+  text-align: center;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+
+  color: var(--main-text-color-theme-dark);
 }
 /*#endregion --- /ABOUT  ----*/
 
@@ -368,6 +491,8 @@ li.contacts-list + .contacts-list {
   height: 100%;
   border-radius: 50%;
   align-items: center;
+  transition: color 250ms var(--timing-function),
+    background-color 250ms var(--timing-function);
 }
 
 .social-icon {
@@ -407,6 +532,9 @@ li.contacts-list + .contacts-list {
   border-radius: 4px;
   align-items: center;
   color: var(--icon-color);
+
+  transition: color 250ms var(--timing-function),
+    border-color 250ms var(--timing-function);
 }
 .clients-icon {
   width: 106px;
@@ -462,7 +590,7 @@ footer .logo,
 }
 
 .footer-address {
-  cursor: auto;
+  cursor: pointer;
 }
 
 .address-list:not(:first-child) {
@@ -508,7 +636,7 @@ PAGE 2. PAGE 2. ---------------PORTFOLIO----------------- PAGE 2. PAGE 2
   padding: 6px 22px;
 
   color: var(--main-text-color-theme-light);
-  background: var(--accent-background-color-grey);
+  background-color: var(--accent-background-color-grey);
 
   font-weight: 500;
   font-size: 16px;
@@ -517,6 +645,10 @@ PAGE 2. PAGE 2. ---------------PORTFOLIO----------------- PAGE 2. PAGE 2
   letter-spacing: 0.03em;
 
   cursor: pointer;
+
+  transition: color 250ms var(--timing-function),
+    background-color 250ms var(--timing-function),
+    box-shadow 250ms var(--timing-function);
 }
 
 .button-pic:hover,
@@ -524,6 +656,8 @@ PAGE 2. PAGE 2. ---------------PORTFOLIO----------------- PAGE 2. PAGE 2
 .button-pic.current {
   background-color: var(--accent-color);
   color: var(--main-text-color-theme-dark);
+  box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08),
+    0px 2px 2px rgba(0, 0, 0, 0.12);
 }
 /*#endregion --- /BUTTONS  ----*/
 
@@ -543,6 +677,9 @@ PAGE 2. PAGE 2. ---------------PORTFOLIO----------------- PAGE 2. PAGE 2
           )
       ) / var(--ammount-of-exemples-on-line)
   );
+  position: relative;
+
+  transition: box-shadow 250ms var(--timing-function);
 }
 
 .examples-list-item:not(:nth-child(3n)) {
@@ -566,6 +703,43 @@ PAGE 2. PAGE 2. ---------------PORTFOLIO----------------- PAGE 2. PAGE 2
 
 .examples-list-img {
   display: block;
+}
+.examples-two-layer {
+  position: relative;
+  overflow: hidden;
+}
+
+.exemples-second-layer-text {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  background-color: var(--accent-second-color);
+  opacity: 0;
+  margin: 0;
+  padding-left: 24px;
+  padding-right: 24px;
+
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.55;
+  letter-spacing: 0.03em;
+  color: var(--main-text-color-theme-dark);
+
+  opacity: 1;
+  /* overflow: hidden; */
+  transform: translateY(100%);
+  transition: transform 250ms var(--timing-function);
+}
+.examples-list-item:hover .exemples-second-layer-text,
+.examples-list-item:focus .exemples-second-layer-text {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .examples-box {
