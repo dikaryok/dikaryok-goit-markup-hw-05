@@ -284,17 +284,20 @@ li.contacts-list + .contacts-list {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
 
   min-width: 528px;
   min-height: 581px;
   border-radius: 4px;
-  opacity: 1;
 
   background-color: var(--main-text-color-theme-dark);
 
-  transition: opacity 250ms var(--timing-function);
+  transition: transform 250ms var(--timing-function);
 }
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
 .modal-btn-closed {
   position: absolute;
   top: 8px;
