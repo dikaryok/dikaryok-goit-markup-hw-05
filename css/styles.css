@@ -684,9 +684,11 @@ PAGE 2. PAGE 2. ---------------PORTFOLIO----------------- PAGE 2. PAGE 2
   );
   position: relative;
 }
+
 .examples-list-item:not(:nth-child(3n)) {
   margin-right: var(--space-between-exemples);
 }
+
 .examples-list-item:not(:nth-last-child(-n + 3)) {
   margin-bottom: var(--space-between-exemples);
 }
@@ -710,6 +712,7 @@ PAGE 2. PAGE 2. ---------------PORTFOLIO----------------- PAGE 2. PAGE 2
 .examples-list-img {
   display: block;
 }
+
 .examples-two-layer {
   position: relative;
   overflow: hidden;
@@ -737,7 +740,6 @@ PAGE 2. PAGE 2. ---------------PORTFOLIO----------------- PAGE 2. PAGE 2
   letter-spacing: 0.03em;
   color: var(--main-text-color-theme-dark);
 
-  /* overflow: hidden; */
   transform: translateY(100%);
   transition: transform 250ms var(--timing-function),
     opacity 250ms var(--timing-function);
