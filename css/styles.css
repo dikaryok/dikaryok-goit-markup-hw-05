@@ -269,9 +269,11 @@ li.contacts-list + .contacts-list {
   z-index: 10;
   width: 100%;
   height: 100%;
-  opacity: 1;
+  /* opacity: 1;
+  visibility: visible; */
   background-color: var(--modal-background-color);
-  transition: opacity 250ms var(--timing-function);
+  transition: opacity 250ms var(--timing-function),
+    visibility 250ms var(--timing-function);
 }
 
 .backdrop.is-hidden {
@@ -692,6 +694,7 @@ PAGE 2. PAGE 2. ---------------PORTFOLIO----------------- PAGE 2. PAGE 2
 .examples-list-item:not(:nth-last-child(-n + 3)) {
   margin-bottom: var(--space-between-exemples);
 }
+
 .examples-list-item:hover,
 .examples-list-item:focus {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
@@ -734,13 +737,14 @@ PAGE 2. PAGE 2. ---------------PORTFOLIO----------------- PAGE 2. PAGE 2
   letter-spacing: 0.03em;
   color: var(--main-text-color-theme-dark);
 
-  opacity: 1;
   /* overflow: hidden; */
   transform: translateY(100%);
-  transition: transform 250ms var(--timing-function);
+  transition: transform 250ms var(--timing-function),
+    opacity 250ms var(--timing-function);
 }
-.examples-list-item:hover .exemples-second-layer-text,
-.examples-list-item:focus .exemples-second-layer-text {
+
+.examples-link:hover .exemples-second-layer-text,
+.examples-link:focus .exemples-second-layer-text {
   opacity: 1;
   transform: translateY(0);
 }
