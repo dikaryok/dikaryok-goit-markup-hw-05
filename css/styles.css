@@ -683,20 +683,20 @@ PAGE 2. PAGE 2. ---------------PORTFOLIO----------------- PAGE 2. PAGE 2
       ) / var(--ammount-of-exemples-on-line)
   );
   position: relative;
-
-  transition: box-shadow 250ms var(--timing-function);
 }
-
 .examples-list-item:not(:nth-child(3n)) {
   margin-right: var(--space-between-exemples);
 }
-
 .examples-list-item:not(:nth-last-child(-n + 3)) {
   margin-bottom: var(--space-between-exemples);
 }
 
-.examples-list-item:hover,
-.examples-list-item:focus {
+.examples-link {
+  display: block;
+  transition: box-shadow 250ms var(--timing-function);
+}
+.examples-link:hover,
+.examples-link:focus {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
 }
